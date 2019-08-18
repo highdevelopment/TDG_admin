@@ -1,0 +1,335 @@
+<div class="row">
+  <div class="col-lg-12">
+    <form (ngSubmit)="saveCourse()"  #heroForm="ngForm" [formGroup]="editForm">
+      <nb-card>
+        <nb-card-header>코스자료 입력</nb-card-header>
+        <nb-card-body>
+          <div class="input-group">
+            <span class="input-group-addon">코스이름</span>
+            <input type="text" class="form-control" name="name" formControlName = "name"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">나라이름</span>
+            <input type="text" class="form-control" name="country" formControlName = "country"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">코스난이도 (0-5)</span>
+            <input type="number" class="form-control" name="hole_level" formControlName = "hole_level"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">그린난이도 (0-5)</span>
+            <input type="number" class="form-control" name="green_level" formControlName = "green_level"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">서브코스개수 (1-4)</span>
+            <input type="number" class="form-control" name="subCC_num" formControlName = "subCC_num"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">코스이미지</span>
+            <!-- <input type="text" class="form-control" name="photo" formControlName = "photo" [value] /> -->
+            <div class="form-control">
+                <img [src]="photo" *ngIf="imageflag"><br>
+                <input class="upload-name" [(ngModel)]="filename" placeholder="이미지 선택"  name="photo" formControlName = "photo"> 
+                <label for="uploadfile" class="btn-primary btn" style="margin: 0 0 0 20px;">업로드</label>               
+                <input type="file" id="uploadfile" class="upload-hidden" name="upload" (change)="handleCategoryBanner($event.target.files)" formControlName="upload">
+            </div>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">구글맵주소</span>
+            <input type="text" class="form-control" name="address" formControlName = "address"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">코스이름(한국어)</span>
+            <input type="text" class="form-control" name="name_kr" placeholder="한국어" formControlName = "name_kr"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">주소(한국어)</span>
+            <input type="text" class="form-control" name="address_kr" placeholder="한국어" formControlName = "address_kr"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">해설문(한국어)</span>
+            <textarea class="form-control" name="comment_kr" style="height:150px;" placeholder="한국어" formControlName = "comment_kr"></textarea>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">코스이름(중어)</span>
+            <input type="text" class="form-control" name="name_cn" placeholder="中文" formControlName = "name_cn"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">주소(중어)</span>
+            <input type="text" class="form-control" name="address_cn" placeholder="中文" formControlName = "address_cn"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">코스이름(영어)</span>
+            <input type="text" class="form-control" name="name_en" placeholder="English" formControlName = "name_en"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">주소(영어)</span>
+            <input type="text" class="form-control" name="address_en" placeholder="English" formControlName = "address_en"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">코스이름(일어)</span>
+            <input type="text" class="form-control" name="name_jp" placeholder="にちぶん" formControlName = "name_jp"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">주소(일어)</span>
+            <input type="text" class="form-control" name="address_jp" placeholder="にちぶん" formControlName = "address_jp"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">website</span>
+            <input type="text" class="form-control" name="website" placeholder="website" formControlName = "website"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">지역</span>
+            <select class="form-control" name="province"  formControlName = "province">
+              <option value="0" selected>수도권</option>
+              <option value="1">강원도</option>
+              <option value="2">충청도</option>
+              <option value="3">전라도</option>
+              <option value="4">경상도</option>
+              <option value="5">제주도</option>
+              <option value="6">해외</option>              
+            </select>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">서브코스1 이름</span>
+            <input type="text" class="form-control" name="sub1_name" formControlName = "sub1_name"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">서브코스1 이름(한국어)</span>
+            <input type="text" class="form-control" name="sub1_name_kr" placeholder="한국어" formControlName = "sub1_name_kr"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">서브코스1 이름(중어)</span>
+            <input type="text" class="form-control" name="sub1_name_cn" placeholder="中文" formControlName = "sub1_name_cn"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">서브코스1 이름(영어)</span>
+            <input type="text" class="form-control" name="sub1_name_en" placeholder="English" formControlName = "sub1_name_en"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">서브코스1 이름(일어)</span>
+            <input type="text" class="form-control" name="sub1_name_jp" placeholder="にちぶん" formControlName = "sub1_name_jp"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">1홀</span>
+            <input type="number" class="form-control" name="sub1_par1" formControlName = "sub1_par1"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">2홀</span>
+            <input type="number" class="form-control" name="sub1_par2" formControlName = "sub1_par2"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">3홀</span>
+            <input type="number" class="form-control" name="sub1_par3" formControlName = "sub1_par3"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">4홀</span>
+            <input type="number" class="form-control" name="sub1_par4" formControlName = "sub1_par4"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">5홀</span>
+            <input type="number" class="form-control" name="sub1_par5" formControlName = "sub1_par5"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">6홀</span>
+            <input type="number" class="form-control" name="sub1_par6" formControlName = "sub1_par6"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">7홀</span>
+            <input type="number" class="form-control" name="sub1_par7" formControlName = "sub1_par7"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">8홀</span>
+            <input type="number" class="form-control" name="sub1_par8" formControlName = "sub1_par8"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">9홀</span>
+            <input type="number" class="form-control" name="sub1_par9" formControlName = "sub1_par9"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">서브코스2 이름</span>
+            <input type="text" class="form-control" name="sub2_name" formControlName = "sub2_name"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">서브코스2 이름(한국어)</span>
+            <input type="text" class="form-control" name="sub2_name_kr" placeholder="한국어" formControlName = "sub2_name_kr"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">서브코스2 이름(중어)</span>
+            <input type="text" class="form-control" name="sub2_name_cn" placeholder="中文" formControlName = "sub2_name_cn"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">서브코스2 이름(영어)</span>
+            <input type="text" class="form-control" name="sub2_name_en" placeholder="English" formControlName = "sub2_name_en"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">서브코스2 이름(일어)</span>
+            <input type="text" class="form-control" name="sub2_name_jp" placeholder="にちぶん" formControlName = "sub2_name_jp"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">1홀</span>
+            <input type="number" class="form-control" name="sub2_par1" formControlName = "sub2_par1"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">2홀</span>
+            <input type="number" class="form-control" name="sub2_par2" formControlName = "sub2_par2"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">3홀</span>
+            <input type="number" class="form-control" name="sub2_par3" formControlName = "sub2_par3"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">4홀</span>
+            <input type="number" class="form-control" name="sub2_par4" formControlName = "sub2_par4"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">5홀</span>
+            <input type="number" class="form-control" name="sub2_par5" formControlName = "sub2_par5"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">6홀</span>
+            <input type="number" class="form-control" name="sub2_par6" formControlName = "sub2_par6"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">7홀</span>
+            <input type="number" class="form-control" name="sub2_par7" formControlName = "sub2_par7"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">8홀</span>
+            <input type="number" class="form-control" name="sub2_par8" formControlName = "sub2_par8"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">9홀</span>
+            <input type="number" class="form-control" name="sub2_par9" formControlName = "sub2_par9"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">서브코스3 이름</span>
+            <input type="text" class="form-control" name="sub3_name" formControlName = "sub3_name"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">서브코스3 이름(한국어)</span>
+            <input type="text" class="form-control" name="sub3_name_kr" formControlName = "sub3_name_kr"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">서브코스3 이름(중어)</span>
+            <input type="text" class="form-control" name="sub3_name_cn" formControlName = "sub3_name_cn"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">서브코스3 이름(영어)</span>
+            <input type="text" class="form-control" name="sub3_name_en" formControlName = "sub3_name_en"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">서브코스3 이름(일어)</span>
+            <input type="text" class="form-control" name="sub3_name_jp" formControlName = "sub3_name_jp"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">1홀</span>
+            <input type="number" class="form-control" name="sub3_par1" formControlName = "sub3_par1"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">2홀</span>
+            <input type="number" class="form-control" name="sub3_par2" formControlName = "sub3_par2"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">3홀</span>
+            <input type="number" class="form-control" name="sub3_par3" formControlName = "sub3_par3"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">4홀</span>
+            <input type="number" class="form-control" name="sub3_par4" formControlName = "sub3_par4"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">5홀</span>
+            <input type="number" class="form-control" name="sub3_par5" formControlName = "sub3_par5"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">6홀</span>
+            <input type="number" class="form-control" name="sub3_par6" formControlName = "sub3_par6"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">7홀</span>
+            <input type="number" class="form-control" name="sub3_par7" formControlName = "sub3_par7"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">8홀</span>
+            <input type="number" class="form-control" name="sub3_par8" formControlName = "sub3_par8"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">9홀</span>
+            <input type="number" class="form-control" name="sub3_par9" formControlName = "sub3_par9"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">서브코스4 이름</span>
+            <input type="text" class="form-control" name="sub4_name" formControlName = "sub4_name"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">서브코스4 이름(한국어)</span>
+            <input type="text" class="form-control" name="sub4_name_kr" formControlName = "sub4_name_kr"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">서브코스4 이름(중어)</span>
+            <input type="text" class="form-control" name="sub4_name_cn" formControlName = "sub4_name_cn"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">서브코스4 이름(영어)</span>
+            <input type="text" class="form-control" name="sub4_name_en" formControlName = "sub4_name_en"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">서브코스4 이름(일어)</span>
+            <input type="text" class="form-control" name="sub4_name_jp" formControlName = "sub4_name_jp"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">1홀</span>
+            <input type="number" class="form-control" name="sub4_par1" formControlName = "sub4_par1"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">2홀</span>
+            <input type="number" class="form-control" name="sub4_par2" formControlName = "sub4_par2"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">3홀</span>
+            <input type="number" class="form-control" name="sub4_par3" formControlName = "sub4_par3"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">4홀</span>
+            <input type="number" class="form-control" name="sub4_par4" formControlName = "sub4_par4"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">5홀</span>
+            <input type="number" class="form-control" name="sub4_par5" formControlName = "sub4_par5"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">6홀</span>
+            <input type="number" class="form-control" name="sub4_par6" formControlName = "sub4_par6"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">7홀</span>
+            <input type="number" class="form-control" name="sub4_par7" formControlName = "sub4_par7"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">8홀</span>
+            <input type="number" class="form-control" name="sub4_par8" formControlName = "sub4_par8"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">9홀</span>
+            <input type="number" class="form-control" name="sub4_par9" formControlName = "sub4_par9"/>
+          </div>
+        </nb-card-body>
+      </nb-card>
+      <nb-card>
+        <nb-card-header>
+          <button class="btn btn-hero-primary btn-demo" (click)="goListPage();" style="float: right; margin-right: 30px; margin-top: 3px;">목록</button>
+          <button type="submit" class="btn btn-hero-success btn-demo" style="float: right; margin-right: 30px; margin-top: 3px;">저장</button>
+        </nb-card-header>
+      </nb-card>
+    </form>
+  </div>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple">
+ <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

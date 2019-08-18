@@ -1,0 +1,40 @@
+nb-card-header {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: -20px;
+    font-weight: bolder;
+  }
+  .searchBar {
+    padding: 10px 20px 5px;
+    border: solid 2px #6178e8;
+    background: #6178e829;
+    margin-bottom: 30px;
+  }
+  
+  .record {
+    font-weight: normal;
+    font-size: 18px;
+  }
+  
+  input {
+    border: 2px solid #dadfe6;
+    padding: 5px;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 25%;
+    vertical-align: middle;
+  }
+  .mat-paginator-page-size {
+    display: none !important;
+  }

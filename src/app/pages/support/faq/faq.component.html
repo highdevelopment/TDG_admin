@@ -1,0 +1,112 @@
+<nb-card>
+  <nb-card-header>
+    AS 요청
+  </nb-card-header>
+
+  <nb-card-body>      
+    <table>
+      <tr>
+        <td class="title"><b style="color: red">*</b> 접수</td>
+        <td>
+          <select [(ngModel)]="data.type">
+            <!-- <option value="0">=== 접수 선택 ===</option> -->
+            <option value="online">온라인</option>
+            <option value="phone">유선</option>
+          </select>            
+        </td>
+      </tr>
+      <tr>
+        <td class="title"><b style="color: red">*</b> 매장명</td>
+        <td><input type="text" [(ngModel)]="data.roomName"></td>
+      </tr>
+      <tr>
+        <td class="title"><b style="color: red">*</b> 룸 이름</td>
+        <td><input type="text" [(ngModel)]="data.storeName"></td>
+      </tr>
+      <tr>
+        <td class="title">분류	</td>
+        <td><input type="text" [(ngModel)]="data.category"></td>
+      </tr>
+      <tr>
+        <td class="title"><b style="color: red">*</b> 요청자</td>
+        <td><input type="text" [(ngModel)]="data.request_name"></td>
+      </tr>
+      <tr>
+        <td class="title"><b style="color: red">*</b> 요청자 연락처</td>
+        <td>
+          <!-- <select (ngModel)="phone1">
+            <option>010</option>
+            <option>011</option>
+            <option>016</option>
+            <option>017</option>
+            <option>018</option>
+            <option>019</option>
+          </select> &nbsp;&nbsp;-&nbsp;&nbsp;
+          <input type="text" [(ngModel)]="phone2" style="width: 100px" maxlength="4">&nbsp;&nbsp;-&nbsp;&nbsp; -->
+          <input type="text" [(ngModel)]="data.request_contact" style="width: 300px" maxlength="15">
+        </td>
+      </tr>
+      <tr>
+        <td class="title"><b style="color: red">*</b> 접수자</td>
+        <td><input type="text" [(ngModel)]="data.recept_name"></td>
+      </tr>
+      <tr>
+        <td class="title"><b style="color: red">*</b> 접수자 연락처</td>
+        <td>
+          <!-- <select (ngModel)="phone1">
+            <option>010</option>
+            <option>011</option>
+            <option>016</option>
+            <option>017</option>
+            <option>018</option>
+            <option>019</option>
+          </select> &nbsp;&nbsp;-&nbsp;&nbsp;
+          <input type="text" [(ngModel)]="phone2" style="width: 100px" maxlength="4">&nbsp;&nbsp;-&nbsp;&nbsp; -->
+          <input type="text" [(ngModel)]="data.recept_contact" style="width: 300px" maxlength="15">
+        </td>
+      </tr>
+      <tr>
+        <td class="title"><b style="color: red">*</b> 접수일</td>
+        <td><input type="date" [(ngModel)]="data.receptedAt"> </td>
+      </tr>
+      <tr>
+        <td class="title"><b style="color: red">*</b> 제목</td>
+        <td><input type="text" [(ngModel)]="data.title"> </td>
+      </tr>
+      <tr>
+        <td class="title"><b style="color: red">*</b> 내용</td>
+        <td><textarea [(ngModel)]="data.content"></textarea></td>
+      </tr>
+      <tr>
+        <td class="title"><b style="color: red">*</b> 처리상태</td>
+        <td>
+          <select [(ngModel)]="data.status">            
+            <option value="done">처리완료</option>
+            <option value="processing">접수완료</option>
+            <option value="waitting">대기중</option>
+          </select>            
+        </td>
+      </tr>
+      <tr> 
+        <td class="title"> 비고</td>
+        <td><input type="text" [(ngModel)]="data.note"> </td>
+      </tr>
+      <tr>
+        <td class="title">* 이미지</td>
+        <td><a href="{{data.photo}}">{{data.photo}}</a></td>
+      </tr>
+    </table>
+    <div style="display:inline-block; width:100%; margin-top:20px;">        
+      <button (click)="qList()">목록</button>
+      <button (click)="qSave()">처리</button>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<ngx-spinner
+    bdColor="rgba(51,51,51,0.8)"
+    size="medium"
+    color="#fff"
+    type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

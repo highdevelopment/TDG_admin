@@ -1,0 +1,66 @@
+<nb-card>  
+    <nb-card-header>이벤트 목록</nb-card-header>
+    <nb-card-body>
+      <div class="searchBar">
+        <label>검색어</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" name="searchText" #searchText>&nbsp;&nbsp;&nbsp;&nbsp;      
+        <button class="btn btn-hero-primary btn-demo" (click)=getEvents(searchText.value)>검색</button>
+        <button class="btn btn-hero-success btn-demo" (click)="goRegPage();" style="float: right; margin-right: 30px;">이벤트 작성</button>
+      </div>
+  
+      <div class="panel panel-default">
+          <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="10">
+            <thead>
+            <tr>              
+                <th style="width: 5%">
+                    <mfDefaultSorter>번호</mfDefaultSorter>
+                </th>
+                <th style="width: 45%">
+                    <mfDefaultSorter by="title">제목</mfDefaultSorter>
+                </th>
+                <th style="width: 15%">
+                    <mfDefaultSorter by="visit">시작일</mfDefaultSorter>
+                </th>
+                <th style="width: 15%">
+                    <mfDefaultSorter by="createdAt">마감일</mfDefaultSorter>
+                </th>
+                <th style="width: 5%">
+                    <mfDefaultSorter by="visit">조회수</mfDefaultSorter>
+                </th>
+                <th style="width: 15%">
+                    <mfDefaultSorter by="createdAt">작성일</mfDefaultSorter>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of mf.data; let i = index" [attr.data-index]="i" (click)="editEvent(item.id);">              
+                <td style="width: 5%">{{i+1}}</td>
+                <td style="width: 45%">{{item.title}}</td>
+                <td style="width: 15%">{{item.startAt.substr(0, 10)}}</td>
+                <td style="width: 15%">{{item.endAt.substr(0, 10)}}</td>
+                <td style="width: 5%">{{item.visit}}</td>
+                <td style="width: 15%">{{item.createdAt.substr(0, 10)}}</td>
+                <!--  -->
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="6">
+                    <mfBootstrapPaginator></mfBootstrapPaginator>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+    </nb-card-body>
+  </nb-card>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple">
+ <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+  
+      

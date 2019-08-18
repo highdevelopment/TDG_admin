@@ -1,0 +1,16 @@
+<nb-card>
+  <nb-card-header>
+    라운드 통계
+  </nb-card-header>
+
+  <nb-card-body>
+    <div class="searchBar">
+      <label>-검색</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="date" name="fromDate" id="fromDate">&nbsp;&nbsp; ~ &nbsp;&nbsp;
+      <input type="date" name="toDate" id="toDate">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button _ngcontent-c63="" class="btn btn-hero-primary btn-demo">검색</button>
+    </div>
+    <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

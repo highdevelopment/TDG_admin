@@ -1,0 +1,51 @@
+<nb-card>
+  <nb-card-header>
+    {{title}}
+  </nb-card-header>
+
+  <nb-card-body>
+    <p class="info">
+      <span style="float:left;"><b>작성자 : </b>{{name}}</span>
+      <span><b>조회수 : </b>{{visit}}</span>
+      <span><b>작성일 :</b> {{createdAt}}</span></p>
+    <p class="content">{{content}}</p>
+    <div *ngIf="attached_question_image">
+      <img [src]="attached_question_image"/>
+    </div>
+    <div *ngIf="attached_question_file">
+      <a [href]="attached_question_file">{{attached_question_filename}}</a>
+    </div>
+    <br>
+    <div *ngIf="status=='waitting'">
+      <label>답글</label>
+      <textarea class="form-control" style="height:150px;" [(ngModel)]="answertext"></textarea>     
+      <div>
+          <img [src]="attached_answer_image" *ngIf="imageflag"><br>
+          <input class="upload-name" [(ngModel)]="filename" placeholder="이미지 선택"  name="photo"> 
+          <label for="uploadfile" class="btn-primary btn" style="margin: 0 0 0 20px;">업로드</label>               
+          <input type="file" id="uploadfile" class="upload-hidden" name="upload" (change)="handleCategoryBanner($event.target.files)">
+      </div>
+    </div>
+    <div *ngIf="status=='checked'">
+        <label>답글</label>   
+        <p class="content">{{answertext}}</p>
+        <div *ngIf="attached_answer_image">
+          <img [src]="attached_answer_image">
+        </div><br>
+        <div *ngIf="attached_answer_file">
+          <a [href]="attached_answer_file">{{attached_answer_filename}}</a>
+        </div>
+    </div>
+    <button class="btn btn-hero-primary btn-demo" (click)="goback()" style="float:right; margin-right: 30px; margin-top: 3px;">목록</button>
+    <button class="btn btn-hero-danger btn-demo" (click)="confirmSet();" style="float: right; margin-right: 30px; margin-top: 3px;">삭제</button>
+    <button *ngIf="status=='waitting'" class="btn btn-hero-success btn-demo" (click)="answer();" style="float: right; margin-right: 30px; margin-top: 3px;">답변완료</button>
+  </nb-card-body>
+</nb-card>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple">
+ <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

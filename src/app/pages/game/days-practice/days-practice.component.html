@@ -1,0 +1,35 @@
+<nb-card>
+  <nb-card-header>
+    일자별 연습 현황
+  </nb-card-header>
+
+  <nb-card-body>
+    <div class="searchBar">
+      <label>-조회기간</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="date" name="fromDate" id="fromDate">&nbsp;&nbsp; ~ &nbsp;&nbsp;
+      <input type="date" name="toDate" id="toDate">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <select>
+        <option>전체</option>
+        <option>버디</option>
+        <option>알바트로스</option>
+        <option>이글</option>
+        <option>홀인원</option>
+      </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button _ngcontent-c63="" class="btn btn-hero-primary btn-demo">조회</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <label>-10분당 요금</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="number" value="0">&nbsp;&nbsp;원&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button _ngcontent-c63="" class="btn btn-hero-primary btn-demo">요금</button>
+      <button _ngcontent-c63="" class="btn btn-hero-primary btn-demo" style="float:right;">엑셀다운로드</button>
+    </div>
+    <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple">
+ <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

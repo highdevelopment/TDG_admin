@@ -1,0 +1,155 @@
+<nb-card>  
+  <nb-card-header>요금미납 점주목록</nb-card-header>
+  <nb-card-body>
+    <div class="panel panel-default">
+        <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="5">
+          <thead>
+          <tr>              
+              <th style="width: 10%">
+                  <mfDefaultSorter>번호</mfDefaultSorter>
+              </th>
+              <th style="width: 30%">
+                  <mfDefaultSorter by="storeName">점포명</mfDefaultSorter>
+              </th>
+              <th style="width: 20%">
+                  <mfDefaultSorter by="manager_name">점주명</mfDefaultSorter>
+              </th>
+              <th style="width: 20%">
+                  <mfDefaultSorter by="cash">미납요금</mfDefaultSorter>
+              </th>
+              <th style="width: 20%">
+                  <mfDefaultSorter by="customer_name">영업담당자 이름</mfDefaultSorter>
+              </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of mf.data; let i = index" [attr.data-index]="i" (click)="inputFee(item.id);">              
+              <td style="width: 10%">{{i+1}}</td>
+              <td style="width: 30%">{{item.storeName}}</td>
+              <td style="width: 20%">{{item.manager_name}}</td>
+              <td style="width: 20%">{{item.cash | number}}원</td>
+              <td style="width: 20%">{{item.customer_name}}</td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+              <td colspan="5">
+                  <mfBootstrapPaginator></mfBootstrapPaginator>
+              </td>
+          </tr>
+          </tfoot>
+      </table>
+    </div>
+  </nb-card-body>
+</nb-card>
+<nb-card>  
+  <nb-card-header>금일 요금 납부 점주목록</nb-card-header>
+  <nb-card-body>
+    <div class="panel panel-default">
+        <table class="table table-striped" [mfData]="data1" #mf1="mfDataTable" [mfRowsOnPage]="5">
+          <thead>
+          <tr>              
+              <th style="width: 20%">
+                  <mfDefaultSorter>번호</mfDefaultSorter>
+              </th>
+              <th style="width: 20%">
+                  <mfDefaultSorter by="storeName">점포명</mfDefaultSorter>
+              </th>
+              <th style="width: 20%">
+                  <mfDefaultSorter by="manager_name">점주명</mfDefaultSorter>
+              </th>
+              <th style="width: 20%">
+                  <mfDefaultSorter by="amount">납부한 금액</mfDefaultSorter>
+              </th>
+              <th style="width: 20%">
+                  <mfDefaultSorter by="customer_name">영업담당자 이름</mfDefaultSorter>
+              </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item1 of mf1.data; let j = index" (click)="inputFee(item1.id1);">              
+              <td style="width: 20%">{{j+1}}</td>
+              <td style="width: 20%">{{item1.storeName}}</td>
+              <td style="width: 20%">{{item1.manager_name}}</td>
+              <td style="width: 20%">{{item1.amount | number}}원</td>
+              <td style="width: 20%">{{item1.customer_name}}</td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+              <td colspan="5">
+                  <mfBootstrapPaginator></mfBootstrapPaginator>
+              </td>
+          </tr>
+          </tfoot>
+      </table>
+    </div>
+  </nb-card-body>
+</nb-card>
+<nb-card>
+  <nb-card-header>요금납부 현황</nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="input-group">
+          <span class="input-group-addon">금일 요금 납부한 점주의 총수 </span>
+          <input type="text" class="form-control" [value]="data3.paidAtToday_num"/>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">금일 요금 납부한 총액 </span>
+          <input type="text" class="form-control" [value]="data3.paidAtToday_amount | number"/>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">금주 요금 납부한 점주의 총수 </span>
+          <input type="text" class="form-control" [value]="data3.paidAtWeek_num"/>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">금주 요금 납부한 총액 </span>
+          <input type="text" class="form-control" [value]="data3.paidAtWeek_amount | number"/>
+        </div>        
+      </div>
+      <div class="col-lg-6">
+        <div class="input-group">
+          <span class="input-group-addon">금월 요금 납부한 점주의 총수 </span>
+          <input type="text" class="form-control" [value]="data3.paidAtMonth_num"/>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">금월 요금 납부한 총액 </span>
+          <input type="text" class="form-control" [value]="data3.paidAtMonth_amount | number"/>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">미납요금 점주의 총수 </span>
+          <input type="text" class="form-control" [value]="data3.unpaidAtToday"/>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">미납요금 총액 </span>
+          <input type="text" class="form-control" [value]="data3.unpaidAtToday_amount | number"/>
+        </div>
+        <!-- <div class="input-group">
+          <span class="input-group-addon">금주 요금 미납부한 점주의 총수 </span>
+          <input type="text" class="form-control" [value]="data3.unpaidAtWeek"/>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">금주 요금 미납부한 총액 </span>
+          <input type="text" class="form-control" [value]="data3.unpaidAtWeek_amount"/>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">금월 요금 미납부한 점주의 총수 </span>
+          <input type="text" class="form-control" [value]="data3.unpaidAtMonth"/>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">금월 요금 미납부한 총액 </span>
+          <input type="text" class="form-control" [value]="data3.unpaidAtMonth_amount"/>
+        </div> -->
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple">
+ <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

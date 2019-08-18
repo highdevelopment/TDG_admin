@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>이벤트 입력</nb-card-header>
+      <nb-card-body>
+        <div class="input-group">
+          <span class="input-group-addon">이벤트 제목</span>
+          <input type="text" class="form-control" #title/>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">이벤트 내용 </span>
+          <textarea rows="15" class="form-control" #content></textarea>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">타이틀 이미지</span>
+          <div class="form-control">
+              <img [src]="photo" *ngIf="imageflag"><br>
+              <input class="upload-name" [(ngModel)]="filename" placeholder="이미지 선택" disabled="disabled"> 
+              <label for="uploadfile" class="btn-primary btn" style="margin: 0 40px 0 20px;">업로드</label><span style="color: red"> * 300*255 픽셀 사이즈의 이미지 사용</span>
+              <input type="file" id="uploadfile" class="upload-hidden" name="upload" (change)="handleCategoryBanner($event.target.files)">
+          </div>
+          
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">메인 이미지</span>
+          <div class="form-control">
+              <img [src]="photo1" *ngIf="imageflag1"><br>
+              <input class="upload-name" [(ngModel)]="image_main" placeholder="이미지 선택" disabled="disabled"> 
+              <label for="uploadfile1" class="btn-primary btn" style="margin: 0 0 0 20px;">업로드</label>               
+              <input type="file" id="uploadfile1" class="upload-hidden" name="upload1" (change)="handleImageMain($event.target.files)">
+          </div>          
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">시작날짜</span>
+          <input type="date" class="form-control" #startAt/>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">마감날짜</span>
+          <input type="date" class="form-control" #endAt/>
+        </div>
+      </nb-card-body>
+    </nb-card>    
+    <nb-card>
+      <nb-card-header>
+        <button class="btn btn-hero-primary btn-demo" (click)="goListPage();" style="float: right; margin-right: 30px; margin-top: 3px;">이벤트 리스트</button>
+        <button class="btn btn-hero-success btn-demo" (click)="addEvent(title.value, content.value, startAt.value, endAt.value);" style="float: right; margin-right: 30px; margin-top: 3px;">저장</button>
+      </nb-card-header>
+    </nb-card>
+  </div>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple">
+ <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

@@ -1,0 +1,80 @@
+<nb-card>
+  <nb-card-header>
+      클레임 접수 및 조치
+  </nb-card-header>
+
+  <nb-card-body>
+    <!-- <div class="filter">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="검색">
+    </div> -->
+    <div class="panel panel-default">
+        <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="10">
+          <thead>
+          <tr>              
+              <th>
+                  <mfDefaultSorter by="service_no">번호</mfDefaultSorter>
+              </th>
+              <th>
+                  <mfDefaultSorter by="type">접수</mfDefaultSorter>
+              </th>
+              <th>
+                  <mfDefaultSorter by="storeName">매장명</mfDefaultSorter>
+              </th>
+              <th>
+                  <mfDefaultSorter by="kind">연락처</mfDefaultSorter>
+              </th>
+              <th>
+                  <mfDefaultSorter by="roomName">룸이름</mfDefaultSorter>
+              </th>
+              <th>
+                  <mfDefaultSorter by="category">분류</mfDefaultSorter>
+              </th>
+              <th>
+                  <mfDefaultSorter by="title">제목</mfDefaultSorter>
+              </th>
+              <th>
+                  <mfDefaultSorter by="createdAt">접수일</mfDefaultSorter>
+              </th>
+              <th>
+                  <mfDefaultSorter by="endedAt">완료일</mfDefaultSorter>
+              </th>
+              <th>
+                  <mfDefaultSorter by="status">처리결과</mfDefaultSorter>
+              </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of mf.data" (click)="regAs(item.id)">              
+              <td>{{item.service_no}}</td>
+              <td>
+                  <span *ngIf="item.type == 'phone'">유선</span>
+                  <span *ngIf="item.type == 'online'">온라인</span>
+              </td>
+              <td>{{item.storeName}}</td>
+              <td>{{item.kind}}</td>
+              <td>{{item.roomName}}</td>
+              <td>{{item.category}}</td>
+              <td>{{item.title}}</td>
+              <td>{{item.createdAt}}</td>
+              <!-- .substr(0,10)               -->
+              <td>{{item.endedAt.substr(0,10)}}</td>
+              <td>
+                <span *ngIf="item.status == 'done'">처리완료</span>
+                <span *ngIf="item.status == 'processing'">접수완료</span>
+                <span *ngIf="item.status == 'waitting'">대기중</span>
+              </td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+              <td colspan="10">
+                  <mfBootstrapPaginator></mfBootstrapPaginator>
+              </td>
+          </tr>
+          </tfoot>
+      </table>
+      <!-- <button (click)="regAs()">AS 등록</button> -->
+      <button (click)="regAs('register')">AS 등록</button>
+    </div>
+  </nb-card-body>
+</nb-card>

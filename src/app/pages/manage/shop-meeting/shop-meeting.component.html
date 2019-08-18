@@ -1,0 +1,74 @@
+<nb-card>  
+  <nb-card-header>시스템 관리</nb-card-header>
+  <nb-card-body>
+    <div class="searchBar">
+      <label>총 매장수&nbsp;&nbsp; {{stores}} 대</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <label>총 장비수&nbsp;&nbsp; {{rooms}} 대</label>
+    </div>
+
+    <div class="panel panel-default">
+        <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="10">
+          <thead>
+          <tr>              
+              <th>
+                  <mfDefaultSorter>점주명</mfDefaultSorter>
+              </th>
+              <th>
+                  <mfDefaultSorter>점포명</mfDefaultSorter>
+              </th>
+              <th>
+                  <mfDefaultSorter>설치장소주소</mfDefaultSorter>
+              </th>
+              <th>
+                  <mfDefaultSorter>영업지사</mfDefaultSorter>
+              </th>
+              <th>
+                  <mfDefaultSorter>영업담당자이름</mfDefaultSorter>
+              </th>
+              <th>
+                  <mfDefaultSorter>계약일</mfDefaultSorter>
+              </th>
+              <th>
+                  <mfDefaultSorter>사용중인장비대수</mfDefaultSorter>
+              </th>
+              <th>
+                  <mfDefaultSorter>등록신청대수</mfDefaultSorter>
+              </th>
+              <th>
+                  <mfDefaultSorter>승인여부</mfDefaultSorter>
+              </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of mf.data">              
+              <td>{{item.store_info.manager_name}}</td>
+              <td>{{item.store_info.storeName}}</td>
+              <td>{{item.store_info.storeAddress}}</td>
+              <td>{{item.store_info.customer_branch}}</td>
+              <td>{{item.store_info.customer_name}}</td>
+              <td>{{item.store_info.contractDate.substr(0,10)}}</td>
+              <td>{{item.room_num}}</td>
+              <td>{{item.new_room_num}}</td>
+              <td><input value="승인" type="button" class="btn btn-hero-primary btn-demo" (click)="roomVerify(item.storeId, item.rooms)"></td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+              <td colspan="9">
+                  <mfBootstrapPaginator></mfBootstrapPaginator>
+              </td>
+          </tr>
+          </tfoot>
+      </table>
+  </div>
+  </nb-card-body>
+</nb-card>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple">
+ <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+    

@@ -1,0 +1,78 @@
+
+<nb-card>  
+  <nb-card-header>점주 조회, 검색</nb-card-header>
+  <nb-card-body>
+    <div class="searchBar">
+      <label>검색어</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="text" name="searchText" #searchText>&nbsp;&nbsp;&nbsp;&nbsp;
+      <label class="custom-control custom-radio" style="display: inline-block" (click)="setconditionDate(0)">
+        <input type="radio" class="custom-control-input" name="searchDate" id="contractDate" checked>
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">계약일</span>
+      </label>
+      <label class="custom-control custom-radio" style="display: inline-block" (click)="setconditionDate(1)">
+        <input type="radio" class="custom-control-input" name="searchDate" id="buildDate">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">설치일</span>
+      </label>     
+      <input  type="text" onfocus="(this.type='date')"  name="fromDate" #date1>&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;
+      <input  type="text" onfocus="(this.type='date')"  name="toDate" #date2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button _ngcontent-c63="" class="btn btn-hero-primary btn-demo" (click)="search(searchText.value, date1.value, date2.value)">검색</button>
+      <!-- <button _ngcontent-c63="" class="btn btn-hero-success btn-demo" (click)="goRegPage();" style="float: right; margin-right: 20px;">점주등록</button> -->
+    </div>
+
+    <div class="panel panel-default">
+        <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="10">
+          <thead>
+          <tr>
+                <th style="width: 10%">
+                    <mfDefaultSorter by="id">점주아이디</mfDefaultSorter>
+                </th>
+              <th style="width: 10%">
+                  <mfDefaultSorter by="manager_name">점주성명</mfDefaultSorter>
+              </th>
+              <th style="width: 10%">
+                  <mfDefaultSorter by="storeName">점포명</mfDefaultSorter>
+              </th>
+              <th style="width: 40%">
+                  <mfDefaultSorter by="customer_branch">설치장소 주소</mfDefaultSorter>
+              </th>
+              <th style="width: 15%">
+                  <mfDefaultSorter by="contractDate">계약일</mfDefaultSorter>
+              </th>
+              <th style="width: 15%">
+                  <mfDefaultSorter by="installedDate">설치일</mfDefaultSorter>
+              </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of mf.data" (click)="editMember(item.accountsId);">
+              <td style="width: 10%">{{item.username}}</td>
+              <td style="width: 10%">{{item.manager_name}}</td>
+              <td style="width: 10%">{{item.storeName}}</td>
+              <td style="width: 40%">{{item.storeAddress}}</td>
+              <td style="width: 15%">{{item.contractDate.substr(0,10)}}</td>
+              <td style="width: 15%">{{item.installedDate.substr(0,10)}}</td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+              <td colspan="6">
+                  <mfBootstrapPaginator></mfBootstrapPaginator>
+              </td>
+          </tr>
+          </tfoot>
+      </table>
+  </div>
+  </nb-card-body>
+</nb-card>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple">
+ <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+
+    

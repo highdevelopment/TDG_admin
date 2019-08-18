@@ -1,0 +1,53 @@
+nb-card {
+    transform: translate3d(0, 0, 0);
+  }
+nb-card-header {
+  text-align: center;
+  font-size: 25px;
+  margin-top: 20px;
+  margin-bottom: -20px;
+  font-weight: bolder;
+}
+.searchBar {
+  padding: 10px 20px 5px;
+  border: solid 2px #e8e368;
+  background: #deda3629;
+  margin-bottom: 30px;
+}
+
+.searchBar button {
+  color: white;
+  font-weight: bold;
+  background-color: #659c08;
+  border: none;
+  padding: 5px 12px 3px;
+  border-radius: 5px;
+}
+table {
+    width: 100%;
+    border-top: 2px solid #aaa;
+}
+
+table td {
+    border: 1px solid #dee2e6;
+    text-align: center;
+    height: 30px;
+}
+
+.row .col-lg-3 .turnoff nb-card-body {
+    text-align: center;
+}
+.turnoff {
+    background-color: #f6f6f6;
+}
+.turnoff nb-card-header {
+    background-color: #a6a8ad;
+    padding: 15px 15px 10px 15px;
+    margin: 0;
+    font-size: 18px;
+}
+tr.header td {
+    background-color: #efefef;
+    font-size: 15px;
+    font-weight: bolder;
+}

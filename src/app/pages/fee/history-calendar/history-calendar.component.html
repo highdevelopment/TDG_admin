@@ -1,0 +1,107 @@
+<nb-card>
+  <nb-card-header>
+      과금매출현황 
+  </nb-card-header>
+
+  <nb-card-body>
+      <!-- <div class="searchBar">
+        <label>조회일</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="date" name="toDate" id="toDate">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-hero-primary btn-demo">조회</button>
+      </div> -->
+      <table style="margin-bottom: 30px">
+        <tbody>
+          <tr class="header">
+            <td width="33.3%">금일 매출</td>
+            <td width="33.3%">금월 매출</td>
+            <td width="33.3%">금년 매출</td>
+          </tr>
+          <tr>
+            <td width="33.3%">{{moneyDay | number}}원</td>
+            <td width="33.3%">{{moneyMonth | number}}원</td>
+            <td width="33.3%">{{moneyYear | number}}원</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <div class="row">
+          <div class="col-lg-4">
+            <nb-card class="turnoff">
+              <nb-card-header>금월납부요금</nb-card-header>
+              <nb-card-body>
+                <table>
+                  <tbody>
+                    <tr class="header">
+                      <td>순위</td>
+                      <td>점주명</td>
+                      <td>영업사원명</td>
+                      <td>요금납부액</td>
+                    </tr>
+                    <tr *ngFor="let item of monthList; let i = index">
+                      <td>{{i+1}}위</td>
+                      <td>{{item.manager_name}}원</td>
+                      <td>{{item.customer_name}}원</td>
+                      <td>{{item.amount | number}}원</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </nb-card-body>
+            </nb-card>
+          </div>
+          <div class="col-lg-4">
+            <nb-card class="turnoff">
+              <nb-card-header>금년납부요금</nb-card-header>
+              <nb-card-body>
+                  <table>
+                    <tbody>
+                      <tr class="header">
+                        <td>순위</td>
+                        <td>점주명</td>
+                        <td>영업사원명</td>
+                        <td>요금납부액</td>
+                      </tr>
+                      <tr *ngFor="let item of yearList; let i = index">
+                          <td>{{i+1}}위</td>
+                          <td>{{item.manager_name}}원</td>
+                          <td>{{item.customer_name}}원</td>
+                          <td>{{item.amount | number}}원</td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </nb-card-body>
+            </nb-card>
+          </div>
+          <div class="col-lg-4">
+            <nb-card class="turnoff">
+              <nb-card-header>전체납부요금</nb-card-header>
+              <nb-card-body>
+                  <table>
+                    <tbody>
+                      <tr class="header">
+                        <td>순위</td>
+                        <td>점주명</td>
+                        <td>영업사원명</td>
+                        <td>요금납부액</td>
+                      </tr>
+                      <tr *ngFor="let item of wholeList; let i = index">
+                          <td>{{i+1}}위</td>
+                          <td>{{item.manager_name}}</td>
+                          <td>{{item.customer_name}}</td>
+                          <td>{{item.amount | number}}원</td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </nb-card-body>
+            </nb-card>
+          </div>          
+      </div>
+  </nb-card-body>
+</nb-card>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple">
+ <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

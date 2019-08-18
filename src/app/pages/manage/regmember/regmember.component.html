@@ -1,0 +1,210 @@
+<div class="row">
+  <div class="col-lg-12">
+    <form (ngSubmit)="onSubmit()"  #heroForm="ngForm" [formGroup]="editForm">
+      <nb-card>
+        <nb-card-header>영업담당자 정보 입력</nb-card-header>
+        <nb-card-body>
+          <div class="input-group">
+            <span class="input-group-addon" style="color: red">영업지사 선택</span>
+            <select class="form-control" name="customer_branch"  formControlName = "customer_branch">
+              <option value="서울" selected>서울</option>
+              <option value="경인">경인</option>
+              <option value="경상">경상</option>
+              <option value="호남">호남</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" style="color: red">영업담당자 이름 </span>
+            <input type="text" class="form-control" name="customer_name" formControlName = "customer_name"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">영업담당자 전화번호 </span>
+            <input type="text" class="form-control" name="customer_phone" formControlName = "customer_phone"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" style="color: red">계약일</span>
+            <input type="date" class="form-control" name="contractDate" formControlName = "contractDate"/>
+          </div>
+        </nb-card-body>
+      </nb-card>
+      <nb-card>
+        <nb-card-header>점주(구매자) 정보 입력</nb-card-header>
+        <nb-card-body>
+          <div class="input-group">
+            <span class="input-group-addon" style="color: red">점주 성명</span>
+            <input type="text" class="form-control" name="manager_name" formControlName = "manager_name"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" style="color: red">점포명 </span>
+            <input type="text" class="form-control" name="storeName" formControlName = "storeName"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">점주 주민등록번호</span>
+            <input type="text" class="form-control" name="manager_residentNumber" formControlName = "manager_residentNumber"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">사업자등록번호 </span>
+            <input type="text" class="form-control" name="manager_businessNumber" formControlName = "manager_businessNumber"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">점주 주소</span>
+            <input type="text" class="form-control" name="manager_address" formControlName = "manager_address"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">점주 전화번호 </span>
+            <input type="text" class="form-control" name="manager_phone" formControlName = "manager_phone"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" style="color: red">설치장소 주소</span>
+            <input type="text" class="form-control" name="storeAddress" formControlName = "storeAddress"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">설치장소 전화번호 </span>
+            <input type="text" class="form-control" name="storePhone" formControlName = "storePhone"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" style="color: red">설치일</span>
+            <input type="date" class="form-control" name="installedDate" formControlName="installedDate" />
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">점주 메일주소 </span>
+            <input type="text" class="form-control" name="manager_mail" formControlName = "manager_mail"/>
+          </div>
+        </nb-card-body>
+      </nb-card>
+      <nb-card>
+        <nb-card-header>매장 정보 입력</nb-card-header>
+        <nb-card-body>
+          <div class="input-group">
+            <span class="input-group-addon">매장이미지</span>
+            <div class="form-control">
+              <img [src]="photo" *ngIf="imageflag"><br>
+              <input class="upload-name" [(ngModel)]="filename" placeholder="이미지 선택"  name="photo" formControlName = "photo"> 
+              <label for="uploadfile" class="btn-primary btn" style="margin: 0 0 0 20px;">업로드</label>               
+              <input type="file" id="uploadfile" class="upload-hidden" name="upload" (change)="handleCategoryBanner($event.target.files)" formControlName="upload">
+            </div>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" style="color: red">매장맵위치 </span>
+            <input type="text" class="form-control" name="storeGeoLocation" formControlName = "storeGeoLocation"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" style="color: red">매장지역</span>
+            <select class="form-control" name="province"  formControlName = "province">
+              <option value="0" selected>수도권</option>
+              <option value="1">강원도</option>
+              <option value="2">충청도</option>
+              <option value="3">전라도</option>
+              <option value="4">경상도</option>
+              <option value="5">제주도</option>
+              <option value="6">해외</option>              
+            </select>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" style="color: red">시스템명 </span>
+            <input type="text" class="form-control" name="system_name" formControlName = "system_name"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" style="color: red">왼손타석</span>
+            <input type="text" class="form-control" name="system_lefthand" formControlName = "system_lefthand"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" style="color: red">운영시간 </span>
+            <input type="text" class="form-control" name="working_time" formControlName = "working_time"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" style="color: red">스윙플레이트</span>
+            <input type="text" class="form-control" name="swingplate" formControlName = "swingplate"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon" style="color: red">주차가능 </span>
+            <input type="text" class="form-control" name="parking_status" formControlName = "parking_status"/>
+          </div>
+        </nb-card-body>
+      </nb-card>
+      <nb-card>
+        <nb-card-header>결제정보 입력</nb-card-header>
+        <nb-card-body>
+          <div class="input-group">
+            <span class="input-group-addon" style="color: red">결제방식 선택</span>
+            <select class="form-control" formControlName="payment_mode" (change)="ChangingValue()">
+              <option value="일시불">일시불</option>
+              <option value="리스">리스</option>
+            </select>
+          </div>
+          <div class="">
+            <div class="input-group" [ngClass]="{nodisplay: step==='일시불'}">
+              <span class="input-group-addon">리스 업체명 </span>
+              <input type="text" class="form-control"/>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">계약금 납입일 </span>
+              <input type="date" class="form-control" name="contract_pay_date" formControlName = "contract_pay_date"/>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">계약금액 </span>
+              <input type="number" class="form-control" name="contract_amount" formControlName = "contract_amount" lang="en-150"/>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">중도금 납입일 </span>
+              <input type="date" class="form-control" name="interpayment_date" formControlName = "interpayment_date"/>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">중도금액 </span>
+              <input type="number" class="form-control" name="interpayment_amount" formControlName = "interpayment_amount"/>
+            </div>
+            <div class="input-group" [ngClass]="{nodisplay: step==='리스'}">
+              <span class="input-group-addon">잔금 납입일 </span>
+              <input type="date" class="form-control" name="balance_date" formControlName = "balance_date"/>
+            </div>
+            <div class="input-group" [ngClass]="{nodisplay: step==='리스'}">
+              <span class="input-group-addon">잔금액 </span>
+              <input type="number" class="form-control" name="balance_amount" formControlName = "balance_amount"/>
+            </div>
+          </div>       
+        </nb-card-body>
+      </nb-card>
+      <nb-card>
+        <nb-card-header>특양사항 입력</nb-card-header>
+        <nb-card-body>
+          <div class="input-group">
+            <span class="input-group-addon">거리제한</span>
+            <!-- <textarea rows="5" class="form-control" name="distance_limit" formControlName = "distance_limit"></textarea> -->
+            <input type="number" class="form-control" name="distance_limit" formControlName = "distance_limit" />
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">라운드 이용요금 </span>
+            <input type="number" class="form-control" name="round_price" formControlName = "round_price" />
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">기타사항</span>
+            <textarea rows="5" class="form-control" name="others" formControlName = "others"></textarea>
+          </div>
+        </nb-card-body>
+      </nb-card>
+      <nb-card>
+        <nb-card-header>시스템 입력</nb-card-header>
+        <nb-card-body>        
+          <div class="input-group">
+            <span class="input-group-addon">요금납부일</span>
+            <input type="date" class="form-control" style="width: 200px" name="payment_date" formControlName = "payment_date"/>
+          </div>
+        </nb-card-body>
+      </nb-card>
+      <nb-card>
+        <nb-card-header>
+          <button class="btn btn-hero-primary btn-demo" (click)="goListPage();" style="float: right; margin-right: 30px; margin-top: 3px;">점주 리스트</button>
+          <button type="submit" class="btn btn-hero-success btn-demo" style="float: right; margin-right: 30px; margin-top: 3px;">저장</button>
+        </nb-card-header>
+      </nb-card>
+    </form>
+  </div>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple">
+ <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

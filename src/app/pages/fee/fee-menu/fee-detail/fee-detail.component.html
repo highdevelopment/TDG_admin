@@ -1,0 +1,45 @@
+<div class="modal-header">
+  <span>{{ modalHeader }}</span>  
+  <button class="close" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+    <p>장비등록일 : {{installedDate}}</p>
+        <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="10">
+          <thead>
+          <tr>
+              <th style="width: 50%">
+                  <mfDefaultSorter by="data2">월</mfDefaultSorter>
+              </th>
+              <th style="width: 50%">
+                  <mfDefaultSorter by="storeName">매출</mfDefaultSorter>
+              </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of mf.data">
+              <td style="width: 50%">{{item.date2.substr(0, 7)}}</td>
+              <td style="width: 50%">{{item.count_total}}</td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+              <td colspan="6">
+                  <mfBootstrapPaginator></mfBootstrapPaginator>
+              </td>
+          </tr>
+          </tfoot>
+        </table>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-md btn-primary" (click)="closeModal()">돌아가기</button>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple">
+ <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

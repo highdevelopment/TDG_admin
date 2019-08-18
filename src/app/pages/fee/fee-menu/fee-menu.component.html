@@ -1,0 +1,93 @@
+  <nb-card>  
+    <nb-card-header>사업자 매출현황</nb-card-header>
+    <nb-card-body>
+      <div class="searchBar">
+        <label class="custom-control custom-radio" style="display: inline-block" (click)="setconditionDate(0)">
+          <input type="radio" class="custom-control-input" name="showMethod" id="s_graph" checked>
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">그래프보기</span>
+        </label>
+        <label class="custom-control custom-radio" style="display: inline-block" (click)="setconditionDate(1)">
+          <input type="radio" class="custom-control-input" name="showMethod" id="s_list">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">목록보기</span>
+        </label>
+        <div [ngClass]="{nodisplay: showMethod===0}">
+            <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+            <label>검색날자 :</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input  type="text" onfocus="(this.type='date')" [(ngModel)]="date1">&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;
+            <input  type="text" onfocus="(this.type='date')" [(ngModel)]="date2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label>검색어</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" name="searchText" #searchText>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button _ngcontent-c63="" class="btn btn-hero-primary btn-demo" (click)="getStoreStatistics(searchText.value)">검색</button>
+        </div>
+      </div>
+
+      <div [ngClass]="{nodisplay: showMethod===1}">      
+        <!-- <chart type="bar" [data]="data1" [options]="options" style="min-height: 400px"></chart> -->
+        <div echarts [options]="options" class="echart"></div>
+      </div>
+  
+      <div [ngClass]="{nodisplay: showMethod===0}" class="panel panel-default">
+          <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="10">
+            <thead>
+            <tr>
+                <th style="width: 17%">
+                    <mfDefaultSorter by="manager_name">점주성명</mfDefaultSorter>
+                </th>
+                <th style="width: 21%">
+                    <mfDefaultSorter by="storeName">점포명</mfDefaultSorter>
+                </th>
+                <th style="width: 17%">
+                    <mfDefaultSorter by="customer_name">영업담당자 이름</mfDefaultSorter>
+                </th>
+                <th style="width: 15%">
+                    <mfDefaultSorter by="games9_num">9홀 라운딩</mfDefaultSorter>
+                </th>
+                <th style="width: 15%">
+                    <mfDefaultSorter by="games18_num">18홀 라운딩</mfDefaultSorter>
+                </th>
+                <th style="width: 15%">
+                    <mfDefaultSorter by="total_num">라운딩 합계</mfDefaultSorter>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of mf.data"  (click)="feeDetail(item.storeId);">
+                <td style="width: 17%">{{item.manager_name}}</td>
+                <td style="width: 21%">{{item.storeName}}</td>
+                <td style="width: 17%">{{item.customer_name}}</td>
+                <td style="width: 15%">{{item.games9_num}}</td>
+                <td style="width: 15%">{{item.games18_num}}</td>
+                <td style="width: 15%">{{item.total_num}}</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="6">
+                    <mfBootstrapPaginator></mfBootstrapPaginator>
+                </td>
+            </tr>
+            </tfoot>
+          </table>
+      </div>
+
+      <div class="footerBar">
+        <label>{{date1}} ~ {{date2}}</label>
+        <label>9홀 라운딩(로그인) : {{total_games9}}번 </label>
+        <label>18홀 라운딩(로그인) : {{total_games18}}번 </label>
+        <label>9홀 라운딩(비로그인) : {{total_gamesN9}}번 </label>
+        <label>18홀 라운딩(비로그인) : {{total_gamesN18}}번 </label>
+        <label>라운딩 합계 : {{total_games}}번 </label>
+      </div>
+    </nb-card-body>
+  </nb-card>
+  
+  <ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple">
+ <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+      

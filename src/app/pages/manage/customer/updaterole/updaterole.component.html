@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <span>{{ modalHeader }}</span>
+  <button class="close" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  {{ modalContent }}
+  <select class="form-control" [(ngModel)]="role">
+    <option value="manager">매니저</option>
+    <option value="user">유저</option>
+  </select>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-md btn-primary" (click)="updaterole()">등록</button>
+  <button class="btn btn-md btn-primary" (click)="closeModal()">취소</button>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple">
+ <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

@@ -1,0 +1,53 @@
+// themes - our custom or/and out of the box themes
+@import 'themes';
+
+// framework component themes (styles tied to theme variables)
+@import '~@nebular/theme/styles/globals';
+@import '~@nebular/auth/styles/all';
+
+// global app font size
+@import './font-size';
+
+// loading progress bar theme
+@import './pace.theme';
+
+@import './bootstrap-rtl';
+
+// install the framework and custom global styles
+@include nb-install() {
+
+  // framework global styles
+  @include nb-theme-global();
+  @include nb-auth-global();
+
+  // loading progress bar
+  @include ngx-pace-theme();
+
+  // fixed in rc.9 and can be removed after upgrade
+  .custom-control .custom-control-indicator {
+    border-radius: 50%; // TODO: quickfix for https://github.com/akveo/nebular/issues/275
+  }
+  @include bootstrap-rtl();
+};
+.table th, .table td {
+  text-align: center;
+  border: 1px solid #dee2e6;
+}
+table tbody tr:hover {
+  background-color: #ccc !important;
+  cursor: pointer;
+}
+.nb-theme-corporate .btn:not(:disabled):not(.disabled) {
+  cursor: pointer !important;
+}
+.table th {
+  background: rgba(242,246,248,1);
+  background: -moz-linear-gradient(top, rgba(242,246,248,1) 0%, rgba(216,225,231,1) 20%, rgba(181,198,208,1) 52%, rgba(224,239,249,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(242,246,248,1)), color-stop(20%, rgba(216,225,231,1)), color-stop(52%, rgba(181,198,208,1)), color-stop(100%, rgba(224,239,249,1)));
+  background: -webkit-linear-gradient(top, rgba(242,246,248,1) 0%, rgba(216,225,231,1) 20%, rgba(181,198,208,1) 52%, rgba(224,239,249,1) 100%);
+  background: -o-linear-gradient(top, rgba(242,246,248,1) 0%, rgba(216,225,231,1) 20%, rgba(181,198,208,1) 52%, rgba(224,239,249,1) 100%);
+  background: -ms-linear-gradient(top, rgba(242,246,248,1) 0%, rgba(216,225,231,1) 20%, rgba(181,198,208,1) 52%, rgba(224,239,249,1) 100%);
+  background: linear-gradient(to bottom, rgba(242,246,248,1) 0%, rgba(216,225,231,1) 20%, rgba(181,198,208,1) 52%, rgba(224,239,249,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f6f8', endColorstr='#e0eff9', GradientType=0 );
+  border-top: 2px solid #b5c6d0;
+}

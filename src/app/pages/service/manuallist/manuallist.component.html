@@ -1,0 +1,54 @@
+<nb-card>  
+    <nb-card-header>메뉴얼 리스트</nb-card-header>
+    <nb-card-body>
+      <div class="searchBar">        
+        <select [(ngModel)]="type" style="width: 150px; margin-left: 30px; border: 2px solid #dadfe6; padding: 5px;" (change)="getManualList()">
+          <option value="0">전체보기</option>
+          <option value="1">메뉴얼</option>
+          <option value="2">자료실</option>
+        </select>
+        <button class="btn btn-hero-success btn-demo" (click)="goRegPage();" style="padding: 5px 20px;float: right; margin-right: 20px; margin-bottom: 30px;">매뉴얼자료 등록</button>
+      </div>
+  
+      <div class="panel panel-default">
+          <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="10">
+            <thead>
+            <tr>              
+                <th style="width:10%">
+                    <mfDefaultSorter by="i">번호</mfDefaultSorter>
+                </th>
+                <th style="width:70%">
+                    <mfDefaultSorter by="title">제목</mfDefaultSorter>
+                </th>
+                <th style="width:20%">
+                    <mfDefaultSorter>날짜</mfDefaultSorter>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of mf.data; let i = index" (click)="goupdate(item.id);">
+                <td style="width:10%">{{i+1}}</td>
+                <td style="width:70%">{{item.title}}</td>
+                <td style="width:20%">{{item.createdAt.substr(0, 10)}}</td>
+                <!-- <td style="width:20%"><button class="btn btn-hero-primary btn-demo" (click)="goupdate(item.id);" style="padding: 6px 20px;">변경</button></td> -->
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3">
+                    <mfBootstrapPaginator></mfBootstrapPaginator>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+    </nb-card-body>
+  </nb-card>
+  
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple">
+ <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

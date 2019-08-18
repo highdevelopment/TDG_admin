@@ -1,0 +1,43 @@
+@import '../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  ngx-echarts-pie,
+  ngx-echarts-bar,
+  ngx-echarts-line,
+  ngx-echarts-multiple-xaxis,
+  ngx-echarts-area-stack,
+  ngx-echarts-bar-animation,
+  ngx-echarts-radar {
+    display: block;
+    height: nb-theme(card-height-medium);
+    width: 100%;
+  }
+
+  /deep/ .echart {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+nb-card-header {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 20px;
+  margin-bottom: -20px;
+  font-weight: bolder;
+}
+.searchBar {
+  padding: 10px 20px 5px;
+  border: solid 2px #e8e368;
+  background: #deda3629;
+  margin-bottom: 30px;
+}
+
+.searchBar button {
+  color: white;
+  font-weight: bold;
+  background-color: #659c08;
+  border: none;
+  padding: 5px 12px 3px;
+  border-radius: 5px;
+}
